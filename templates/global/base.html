@@ -52,7 +52,6 @@
             const icon = toggleButton.querySelector('i');
             const body = document.body;
 
-            // Verifica a preferência do usuário ou o último estado salvo
             const currentTheme = localStorage.getItem('theme');
             if (currentTheme) {
                 body.classList.add(currentTheme);
@@ -64,7 +63,6 @@
                     icon.classList.add('fa-moon');
                 }
             } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                // Se não há preferência salva, verifica a preferência do sistema operacional
                 body.classList.add('dark-mode');
                 localStorage.setItem('theme', 'dark-mode');
                 icon.classList.remove('fa-moon');

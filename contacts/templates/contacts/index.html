@@ -1,10 +1,9 @@
 {% extends 'base.html' %}
-{% load static %} {# ESSENCIAL: Carrega a tag 'static' #}
+{% load static %}
 
 {% block title %}Página Inicial - Minha Agenda{% endblock %}
 
 {% block extra_head %}
-    {# Inclua o CSS específico da agenda aqui, com o novo caminho global #}
     <link rel="stylesheet" href="{% static 'global/css/agenda.css' %}">
 {% endblock %}
 
@@ -25,19 +24,18 @@
                                 <th>Email</th>
                                 <th>Telefone</th>
                                 <th>Categoria</th>
-                                <th>Ações</th> {# Para futuros botões de editar/excluir #}
+                                <th>Ações</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for contact in contacts %}
                             <tr>
                                 <td>{{ contact.first_name }}</td>
-                                <td>{{ contact.last_name|default:"-" }}</td> {# Mostra "-" se sobrenome for vazio #}
+                                <td>{{ contact.last_name|default:"-" }}</td>
                                 <td>{{ contact.email }}</td>
-                                <td>{{ contact.number|default:"-" }}</td> {# Assumindo que 'number' é o campo do telefone #}
-                                <td>{{ contact.category.name|default:"-" }}</td> {# Assumindo que 'category' é um objeto com atributo 'name' #}
+                                <td>{{ contact.number|default:"-" }}</td>
+                                <td>{{ contact.category.name|default:"-" }}</td> 
                                 <td>
-                                    {# Aqui você pode adicionar links para editar ou excluir #}
                                     <a href="#" class="btn-action edit">Editar</a>
                                     <a href="#" class="btn-action delete">Excluir</a>
                                 </td>

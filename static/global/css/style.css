@@ -1,12 +1,10 @@
-/* =================== */
-/* --- Root Styles --- */
-/* =================== */
+
 :root {
   --color-primary: #3f51b5;
-  --color-accent: #5c6bc0; /* Nova cor para o botão de modo escuro (tom de azul) */
-  --color-bg: #eaf1f8; /* Branco mais suave para modo claro */
+  --color-accent: #5c6bc0;
+  --color-bg: #eaf1f8;
   --color-surface: #ffffff;
-  --color-text-primary: #333333; /* Texto mais escuro para modo claro, com melhor contraste */
+  --color-text-primary: #333333;
   --color-text-secondary: #666666;
   --color-border: #d0d0d0;
   --radius: 10px;
@@ -15,17 +13,14 @@
 
 body.dark-mode {
   --color-primary: #8c9eff;
-  --color-accent: #7986cb; /* Tom de azul ligeiramente diferente para o dark mode */
-  --color-bg: #222222; /* Fundo mais escuro no dark mode, mas não preto total */
-  --color-surface: #3a3a3a; /* Superfície mais escura para melhor contraste no dark mode */
-  --color-text-primary: #f0f0f0; /* Texto claro para dark mode, com bom contraste */
+  --color-accent: #7986cb;
+  --color-bg: #222222;
+  --color-surface: #3a3a3a;
+  --color-text-primary: #f0f0f0;
   --color-text-secondary: #bbbbbb;
   --color-border: #666666;
 }
 
-/* =================== */
-/* --- Base Reset  --- */
-/* =================== */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -43,9 +38,6 @@ body {
   flex-direction: column;
 }
 
-/* =================== */
-/* --- Layout --- */
-/* =================== */
 .container {
   max-width: 1200px;
   margin: auto;
@@ -53,9 +45,6 @@ body {
   width: 100%;
 }
 
-/* =================== */
-/* --- Header --- */
-/* =================== */
 header {
   background-color: var(--color-surface);
   border-bottom: 1px solid var(--color-border);
@@ -97,25 +86,21 @@ header nav {
   color: white;
 }
 
-/* Toggle Dark Mode Button */
 #darkModeToggle {
-  background: var(--color-accent); /* Agora usa a nova variável accent */
+  background: var(--color-accent);
   border: none;
   padding: 0.5rem 1rem;
   color: white;
   border-radius: var(--radius);
   cursor: pointer;
   font-weight: 600;
-  transition: transform 0.2s ease, background-color var(--transition); /* Adicionado transition para background */
+  transition: transform 0.2s ease, background-color var(--transition);
 }
 
 #darkModeToggle:hover {
   transform: scale(1.05);
 }
 
-/* =================== */
-/* --- Main --- */
-/* =================== */
 main.container {
   background-color: var(--color-surface);
   margin-top: 2rem;
@@ -123,13 +108,10 @@ main.container {
   border-radius: var(--radius);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
   flex: 1;
-  text-align: center; /* Centraliza o conteúdo principal, incluindo o h1 */
+  text-align: center;
   transition: background-color var(--transition);
 }
 
-/* =================== */
-/* --- Footer --- */
-/* =================== */
 footer {
   background-color: var(--color-surface);
   border-top: 1px solid var(--color-border);
@@ -139,14 +121,11 @@ footer {
   color: var(--color-text-secondary);
 }
 
-/* =================== */
-/* --- Headings --- */
-/* =================== */
 h1, h2, h3, h4, h5 {
   color: var(--color-text-primary);
   margin-bottom: 1rem;
   font-weight: 700;
-  text-align: center; /* Centraliza todos os headings por padrão */
+  text-align: center;
 }
 
 p {
@@ -154,9 +133,6 @@ p {
   margin-bottom: 1rem;
 }
 
-/* =================== */
-/* --- Login Card --- */
-/* =================== */
 .login-card {
   background-color: var(--color-surface);
   padding: 2rem;
@@ -164,14 +140,14 @@ p {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
   max-width: 400px;
   margin: 3rem auto;
-  text-align: left; /* Mantém o texto dentro do card alinhado à esquerda */
+  text-align: left; 
   transition: background-color var(--transition);
 }
 
 .login-card h2 {
   font-size: 1.8rem;
   margin-bottom: 0.5rem;
-  text-align: left; /* Sobrescreve para manter o h2 dentro do card à esquerda */
+  text-align: left;
 }
 
 .login-card p {
@@ -179,9 +155,6 @@ p {
   margin-bottom: 2rem;
 }
 
-/* =================== */
-/* --- Form Inputs --- */
-/* =================== */
 .login-form label {
   font-weight: 600;
   font-size: 0.95rem;
@@ -196,8 +169,8 @@ p {
   border-radius: var(--radius);
   font-size: 1rem;
   margin-bottom: 1.5rem;
-  background-color: var(--color-surface); /* Usa a cor de superfície */
-  color: var(--color-text-primary); /* Texto digitado com a cor primária */
+  background-color: var(--color-surface);
+  color: var(--color-text-primary);
   transition: all var(--transition);
 }
 
@@ -207,13 +180,11 @@ p {
 }
 
 .login-form input::placeholder {
-  color: var(--color-text-secondary); /* Placeholder com a cor secundária */
-  opacity: 0.8; /* Um pouco mais visível */
+  color: var(--color-text-secondary);
+  opacity: 0.8;
 }
 
-/* =================== */
-/* --- Primary Button --- */
-/* =================== */
+
 .btn-primary {
   background-color: var(--color-primary);
   border: none;
@@ -231,9 +202,6 @@ p {
   transform: translateY(-2px);
 }
 
-/* =================== */
-/* --- Login Links --- */
-/* =================== */
 .login-links {
   text-align: center;
   font-size: 0.9rem;
@@ -252,9 +220,7 @@ p {
   text-decoration: underline;
 }
 
-/* =================== */
-/* --- Alert Boxes --- */
-/* =================== */
+
 .alert {
   padding: 1rem;
   border-radius: var(--radius);
@@ -274,9 +240,7 @@ body.dark-mode .alert-danger {
   border-color: #932830;
 }
 
-/* =================== */
-/* --- Responsive --- */
-/* =================== */
+
 @media (max-width: 768px) {
   .nav-links {
     flex-direction: column;

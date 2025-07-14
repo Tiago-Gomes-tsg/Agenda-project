@@ -8,11 +8,11 @@
     <p>Acesse sua conta para gerenciar seus contatos.</p>
     
     <form method="post" class="login-form">
-        {% csrf_token %} {# Essencial e gerado automaticamente pela LoginView #}
+        {% csrf_token %}
         
-        {{ form.as_p }} {# Renderiza os campos como parágrafos. Podemos estilizar depois. #}
+        {{ form.as_p }}
         
-        {# Este bloco exibirá erros gerais do formulário (ex: credenciais inválidas) #}
+
         {% if form.non_field_errors %}
             <div class="alert alert-danger" role="alert">
                 {% for error in form.non_field_errors %}
