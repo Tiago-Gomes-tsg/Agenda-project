@@ -1,57 +1,5 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Página Inicial - Minha Agenda{% endblock %}
+{% block title %}Página Inicial{% endblock %}
 
-{% block extra_head %}
-    <link rel="stylesheet" href="{% static 'global/css/agenda.css' %}">
-{% endblock %}
-
-{% block content %}
-    <div class="content">
-        <h1>Bem-vindo à sua Agenda</h1>
-        <p>Aqui você pode gerenciar seus contatos.</p>
-        
-        {% if user.is_authenticated %}
-            <div class="agenda-view">
-                <h2>Meus Contatos</h2>
-                {% if contacts %}
-                    <table class="contacts-table">
-                        <thead>
-                            <tr>
-                                <th>Nome</th>
-                                <th>Sobrenome</th>
-                                <th>Email</th>
-                                <th>Telefone</th>
-                                <th>Categoria</th>
-                                <th>Ações</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for contact in contacts %}
-                            <tr>
-                                <td>{{ contact.first_name }}</td>
-                                <td>{{ contact.last_name|default:"-" }}</td>
-                                <td>{{ contact.email }}</td>
-                                <td>{{ contact.number|default:"-" }}</td>
-                                <td>{{ contact.category.name|default:"-" }}</td> 
-                                <td>
-                                    <a href="#" class="btn-action edit">Editar</a>
-                                    <a href="#" class="btn-action delete">Excluir</a>
-                                </td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                {% else %}
-                    <p>Você ainda não tem contatos cadastrados. <a href="#">Adicionar novo contato</a>.</p>
-                {% endif %}
-                <div class="add-contact-btn-container">
-                    <a href="#" class="btn">Adicionar Novo Contato</a>
-                </div>
-            </div>
-        {% else %}
-            <p>Faça o <a href="{% url 'login' %}">login</a> para ver seus contatos.</p>
-        {% endif %}
-    </div>
-{% endblock %}
