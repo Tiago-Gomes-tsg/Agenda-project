@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Login - Minha Agenda{% endblock %}
+
+{% block content %}
+    <div class="form-container">
+        <h2>Login</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn">Entrar</button>
+        </form>
+        {% if form.errors %}
+            <div class="form-errors">
+                <p>Seu nome de usuário e senha não correspondem. Por favor, tente novamente.</p>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
