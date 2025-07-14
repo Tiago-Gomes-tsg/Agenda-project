@@ -1,0 +1,113 @@
+/* static/global/css/agenda.css */
+
+.agenda-view {
+    margin-top: 2rem;
+}
+
+.agenda-view h2 {
+    margin-bottom: 1.5rem;
+    color: #444;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+    font-size: 1.8em; /* Um pouco maior para destaque */
+}
+
+.contacts-table {
+    width: 100%;
+    border-collapse: collapse; /* Remove o espaçamento entre as bordas das células */
+    margin-bottom: 2rem;
+    box-shadow: 0 0 15px rgba(0,0,0,0.08); /* Sombra um pouco mais pronunciada */
+    background-color: #fff;
+    border-radius: 8px; /* Cantos arredondados para a tabela */
+    overflow: hidden; /* Garante que os cantos arredondados sejam visíveis */
+}
+
+.contacts-table thead {
+    background-color: #e9ecef; /* Um cinza claro para o cabeçalho */
+    color: #343a40; /* Texto mais escuro para contraste */
+}
+
+.contacts-table th,
+.contacts-table td {
+    text-align: left;
+    padding: 14px 18px; /* Mais padding para melhor leitura */
+    border-bottom: 1px solid #dee2e6; /* Linhas mais sutis */
+}
+
+.contacts-table th {
+    font-weight: 600; /* Mais negrito */
+    text-transform: uppercase;
+    font-size: 0.85em; /* Um pouco menor, para cabeçalhos */
+    letter-spacing: 0.05em; /* Leve espaçamento entre letras */
+}
+
+.contacts-table tbody tr:nth-child(even) {
+    background-color: #f8f9fa; /* Lista zebrada mais sutil */
+}
+
+.contacts-table tbody tr:hover {
+    background-color: #e2e6ea; /* Efeito hover mais notável */
+    cursor: pointer; /* Indica que a linha pode ser clicável (para futuras ações) */
+}
+
+/* Estilos para os botões de ação dentro da tabela */
+.btn-action {
+    padding: 7px 12px;
+    border-radius: 5px; /* Mais arredondado */
+    text-decoration: none;
+    font-size: 0.8em;
+    margin-right: 8px; /* Mais espaço entre os botões */
+    white-space: nowrap;
+    display: inline-block; /* Garante que se comportem como blocos para padding/margin */
+    transition: background-color 0.2s ease, transform 0.1s ease; /* Transições suaves */
+}
+
+.btn-action:last-child {
+    margin-right: 0; /* Remove margin do último botão */
+}
+
+.btn-action.edit {
+    background-color: #007bff; /* Azul primário */
+    color: white;
+    border: 1px solid #007bff;
+}
+
+.btn-action.edit:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+    transform: translateY(-1px); /* Leve levantamento */
+}
+
+.btn-action.delete {
+    background-color: #dc3545; /* Vermelho perigo */
+    color: white;
+    border: 1px solid #dc3545;
+}
+
+.btn-action.delete:hover {
+    background-color: #c82333;
+    border-color: #c82333;
+    transform: translateY(-1px);
+}
+
+/* Container para o botão "Adicionar Novo Contato" */
+.add-contact-btn-container {
+    text-align: center; /* Centraliza o botão */
+    margin-top: 2.5rem; /* Mais espaço acima */
+}
+
+.add-contact-btn-container .btn {
+    width: auto;
+    padding: 12px 25px; /* Mais padding para o botão principal */
+    font-size: 1.1em; /* Texto um pouco maior */
+    border-radius: 7px; /* Mais arredondado */
+    background: #28a745; /* Verde de sucesso */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Sombra para o botão */
+    transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+}
+
+.add-contact-btn-container .btn:hover {
+    background: #218838;
+    transform: translateY(-2px); /* Levanta mais */
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15); /* Sombra maior no hover */
+}
