@@ -1,152 +1,270 @@
+/* Variáveis CSS para facilitar a manutenção das cores */
+:root {
+    --primary-color: #6C757D; /* Cinza Chumbo - para botões primários e destaques */
+    --secondary-color: #343A40; /* Cinza Escuro Quase Preto - para cabeçalho e rodapé */
+    --accent-color: #007BFF; /* Azul Intenso - para links e elementos interativos */
+    --background-light: #F8F9FA; /* Cinza Muito Claro - para o fundo geral */
+    --background-card: #FFFFFF; /* Branco Puro - para cartões e áreas de conteúdo */
+    --text-dark: #212529; /* Preto Quase Escuro - para textos principais */
+    --text-light: #F8F9FA; /* Cinza Muito Claro - para textos em fundos escuros */
+    --border-color: #CED4DA; /* Cinza Médio - para bordas suaves */
+    --shadow-light: rgba(0, 0, 0, 0.08); /* Sombra suave para elevação */
+    --shadow-medium: rgba(0, 0, 0, 0.15); /* Sombra mais pronunciada */
+}
+
+/* --- Estilos Globais e do Corpo --- */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    background-color: #f4f4f4;
-    color: #333;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    font-family: 'Roboto', 'Segoe UI', Arial, sans-serif;
+    color: var(--text-dark);
+    line-height: 1.6;
+    background-color: var(--background-light);
+    margin: 0;
+    padding: 0;
 }
 
 .container {
-    width: 80%;
-    margin: 0 auto;
     max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+    width: 100%;
 }
 
-main {
-    flex: 1;
-    padding: 20px 0;
-}
-
-.navbar {
-    background-color: #333;
-    color: #fff;
+/* --- Header e Navegação --- */
+header {
+    background-color: var(--secondary-color);
+    box-shadow: 0 4px 8px var(--shadow-light);
     padding: 1rem 0;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.navbar .container {
+header nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
 }
 
-.navbar-brand {
-    color: #fff;
+header .logo {
+    color: var(--text-light);
+    font-size: 1.8rem;
+    font-weight: 700;
     text-decoration: none;
-    font-size: 1.5rem;
-    font-weight: bold;
+    transition: color 0.3s ease;
 }
 
-.navbar-nav {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+header .logo:hover {
+    color: #ffffff;
+}
+
+header .nav-links {
     display: flex;
+    gap: 25px;
     align-items: center;
 }
 
-.nav-item {
-    margin-left: 20px;
-}
-
-.nav-link {
-    color: #fff;
+header .nav-links a {
+    color: var(--text-light);
     text-decoration: none;
-    padding: 5px 10px;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: all 0.3s ease;
 }
 
-.nav-link:hover {
+header .nav-links a:hover {
+    background-color: var(--accent-color);
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+/* --- Main Content Area --- */
+main.container {
+    flex: 1;
+    padding: 3rem 15px;
+    background-color: var(--background-card);
+    border-radius: 8px;
+    box-shadow: 0 6px 20px var(--shadow-medium);
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* --- Rodapé --- */
+footer {
+    background-color: var(--secondary-color);
+    color: var(--text-light);
+    padding: 1.5rem 0;
+    text-align: center;
+    box-shadow: 0 -2px 5px var(--shadow-light);
+    margin-top: auto;
+}
+
+footer p {
+    margin-bottom: 0;
+    font-size: 0.9rem;
+}
+
+/* --- Estilos para Títulos e Textos --- */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--secondary-color);
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+/* --- Responsividade (Media Queries) --- */
+@media (max-width: 768px) {
+    header nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    header .nav-links {
+        margin-top: 15px;
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+    }
+
+    header .nav-links a {
+        text-align: center;
+        width: 100%;
+    }
+
+    main.container {
+        padding: 1.5rem;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    header .logo {
+        font-size: 1.5rem;
+    }
+}
+
+/* --- Estilos para o formulário de login (login.html) --- */
+.login-card {
+    background-color: var(--background-card);
+    padding: 2.5rem;
+    border-radius: 10px;
+    box-shadow: 0 8px 25px var(--shadow-medium); 
+    max-width: 450px;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.login-card h2 {
+    color: var(--secondary-color);
+    font-size: 2rem;
+    margin-bottom: 0.8rem;
+}
+
+.login-card p {
+    color: var(--text-dark);
+    font-size: 1rem;
+    margin-bottom: 2rem;
+}
+
+.login-form {
+    text-align: left;
+}
+
+.login-form p {
+    margin-bottom: 1.5rem;
+}
+
+.login-form label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text-dark);
+    font-size: 0.95rem;
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"],
+.login-form input[type="email"] {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 1rem;
+    color: var(--text-dark);
+    background-color: #fcfcfc;
+    transition: all 0.3s ease;
+}
+
+.login-form input[type="text"]:focus,
+.login-form input[type="password"]:focus,
+.login-form input[type="email"]:focus {
+    border-color: var(--primary-color); /* Agora usa o novo primary-color */
+    box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0.25); /* Adapta a sombra de foco à nova cor */
+    outline: none;
+    background-color: #ffffff;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border: none;
+    color: white;
+    padding: 0.9rem 1.5rem;
+    font-size: 1.1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 100%;
+    margin-top: 1.5rem;
+}
+
+.btn-primary:hover {
+    background-color: #5A6268; /* Um tom mais escuro do primary-color no hover */
+    transform: translateY(-2px);
+}
+
+.login-links {
+    margin-top: 2.5rem;
+    font-size: 0.9rem;
+}
+
+.login-links p {
+    margin-bottom: 0.8rem;
+}
+
+.login-links a {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.login-links a:hover {
+    color: var(--secondary-color);
     text-decoration: underline;
 }
 
-.content {
-    background-color: #fff;
-    padding: 2rem;
+/* Estilo para mensagens de alerta (se usadas) */
+.alert {
+    padding: 1rem;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-
-.content h1, .content h2 {
-    color: #333;
-}
-
-.form-container {
-    background: #fff;
-    padding: 2rem;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    max-width: 500px;
-    margin: 2rem auto;
-}
-
-.form-container h2 {
-    margin-top: 0;
     margin-bottom: 1.5rem;
-    text-align: center;
+    font-size: 0.9rem;
+    text-align: left;
 }
 
-.form-container p {
-    margin-bottom: 1rem;
-}
-
-.form-container label {
-    display: block;
-    margin-bottom: 0.5rem;
-}
-
-.form-container input[type="text"],
-.form-container input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 3px;
-    box-sizing: border-box;
-}
-
-.btn {
-    display: inline-block;
-    background: #5cb85c;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-    text-decoration: none;
-    font-size: 1rem;
-    width: 100%;
-    text-align: center;
-}
-
-.btn:hover {
-    background: #4cae4c;
-}
-
-.btn-logout {
-    background: #d9534f;
-    color: white;
-    border: none;
-    padding: 8px 15px;
-    border-radius: 3px;
-    cursor: pointer;
-}
-
-.btn-logout:hover {
-    background: #c9302c;
-}
-
-.form-errors {
-    margin-top: 1rem;
-    color: #d9534f;
-    text-align: center;
-}
-
-.footer {
-    background: #333;
-    color: #fff;
-    text-align: center;
-    padding: 1rem 0;
-    margin-top: auto;
+.alert-danger {
+    background-color: #F8D7DA; /* Mantido para erro, cor padrão de alerta vermelho */
+    color: #721C24;
+    border: 1px solid #F5C6CB;
 }

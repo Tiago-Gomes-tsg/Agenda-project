@@ -3,17 +3,30 @@
 {% block title %}Login - Minha Agenda{% endblock %}
 
 {% block content %}
-    <div class="form-container">
-        <h2>Login</h2>
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn">Entrar</button>
-        </form>
-        {% if form.errors %}
-            <div class="form-errors">
-                <p>Seu nome de usuário e senha não correspondem. Por favor, tente novamente.</p>
+<div class="login-card">
+    <h2>Entrar na Minha Agenda</h2>
+    <p>Acesse sua conta para gerenciar seus contatos.</p>
+    
+    <form method="post" class="login-form">
+        {% csrf_token %} {# Essencial e gerado automaticamente pela LoginView #}
+        
+        {{ form.as_p }} {# Renderiza os campos como parágrafos. Podemos estilizar depois. #}
+        
+        {# Este bloco exibirá erros gerais do formulário (ex: credenciais inválidas) #}
+        {% if form.non_field_errors %}
+            <div class="alert alert-danger" role="alert">
+                {% for error in form.non_field_errors %}
+                    {{ error }}
+                {% endfor %}
             </div>
         {% endif %}
+
+        <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+    </form>
+    
+    <div class="login-links">
+        <p>Ainda não tem uma conta? <a href="#">Crie uma aqui</a></p>
+        <p><a href="#">Esqueceu sua senha?</a></p>
     </div>
+</div>
 {% endblock %}
