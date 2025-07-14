@@ -1,270 +1,296 @@
-/* Variáveis CSS para facilitar a manutenção das cores */
+/* =================== */
+/* --- Root Styles --- */
+/* =================== */
 :root {
-    --primary-color: #6C757D; /* Cinza Chumbo - para botões primários e destaques */
-    --secondary-color: #343A40; /* Cinza Escuro Quase Preto - para cabeçalho e rodapé */
-    --accent-color: #007BFF; /* Azul Intenso - para links e elementos interativos */
-    --background-light: #F8F9FA; /* Cinza Muito Claro - para o fundo geral */
-    --background-card: #FFFFFF; /* Branco Puro - para cartões e áreas de conteúdo */
-    --text-dark: #212529; /* Preto Quase Escuro - para textos principais */
-    --text-light: #F8F9FA; /* Cinza Muito Claro - para textos em fundos escuros */
-    --border-color: #CED4DA; /* Cinza Médio - para bordas suaves */
-    --shadow-light: rgba(0, 0, 0, 0.08); /* Sombra suave para elevação */
-    --shadow-medium: rgba(0, 0, 0, 0.15); /* Sombra mais pronunciada */
+  --color-primary: #3f51b5;
+  --color-accent: #5c6bc0; /* Nova cor para o botão de modo escuro (tom de azul) */
+  --color-bg: #eaf1f8; /* Branco mais suave para modo claro */
+  --color-surface: #ffffff;
+  --color-text-primary: #333333; /* Texto mais escuro para modo claro, com melhor contraste */
+  --color-text-secondary: #666666;
+  --color-border: #d0d0d0;
+  --radius: 10px;
+  --transition: 0.3s ease;
 }
 
-/* --- Estilos Globais e do Corpo --- */
+body.dark-mode {
+  --color-primary: #8c9eff;
+  --color-accent: #7986cb; /* Tom de azul ligeiramente diferente para o dark mode */
+  --color-bg: #222222; /* Fundo mais escuro no dark mode, mas não preto total */
+  --color-surface: #3a3a3a; /* Superfície mais escura para melhor contraste no dark mode */
+  --color-text-primary: #f0f0f0; /* Texto claro para dark mode, com bom contraste */
+  --color-text-secondary: #bbbbbb;
+  --color-border: #666666;
+}
+
+/* =================== */
+/* --- Base Reset  --- */
+/* =================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    font-family: 'Roboto', 'Segoe UI', Arial, sans-serif;
-    color: var(--text-dark);
-    line-height: 1.6;
-    background-color: var(--background-light);
-    margin: 0;
-    padding: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  line-height: 1.6;
+  transition: background-color var(--transition), color var(--transition);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
+/* =================== */
+/* --- Layout --- */
+/* =================== */
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 15px;
-    width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  padding: 1rem;
+  width: 100%;
 }
 
-/* --- Header e Navegação --- */
+/* =================== */
+/* --- Header --- */
+/* =================== */
 header {
-    background-color: var(--secondary-color);
-    box-shadow: 0 4px 8px var(--shadow-light);
-    padding: 1rem 0;
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  padding: 1.2rem 0;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  transition: background-color var(--transition);
 }
 
 header nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
-header .logo {
-    color: var(--text-light);
-    font-size: 1.8rem;
-    font-weight: 700;
-    text-decoration: none;
-    transition: color 0.3s ease;
+.logo {
+  font-weight: 700;
+  font-size: 1.6rem;
+  color: var(--color-primary);
+  text-decoration: none;
 }
 
-header .logo:hover {
-    color: #ffffff;
+.nav-links {
+  display: flex;
+  gap: 1rem;
 }
 
-header .nav-links {
-    display: flex;
-    gap: 25px;
-    align-items: center;
+.nav-links a {
+  text-decoration: none;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius);
+  transition: background-color var(--transition), color var(--transition);
 }
 
-header .nav-links a {
-    color: var(--text-light);
-    text-decoration: none;
-    font-weight: 500;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    transition: all 0.3s ease;
+.nav-links a:hover {
+  background-color: var(--color-primary);
+  color: white;
 }
 
-header .nav-links a:hover {
-    background-color: var(--accent-color);
-    color: #ffffff;
-    transform: translateY(-2px);
+/* Toggle Dark Mode Button */
+#darkModeToggle {
+  background: var(--color-accent); /* Agora usa a nova variável accent */
+  border: none;
+  padding: 0.5rem 1rem;
+  color: white;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-weight: 600;
+  transition: transform 0.2s ease, background-color var(--transition); /* Adicionado transition para background */
 }
 
-/* --- Main Content Area --- */
+#darkModeToggle:hover {
+  transform: scale(1.05);
+}
+
+/* =================== */
+/* --- Main --- */
+/* =================== */
 main.container {
-    flex: 1;
-    padding: 3rem 15px;
-    background-color: var(--background-card);
-    border-radius: 8px;
-    box-shadow: 0 6px 20px var(--shadow-medium);
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+  background-color: var(--color-surface);
+  margin-top: 2rem;
+  padding: 2rem;
+  border-radius: var(--radius);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  flex: 1;
+  text-align: center; /* Centraliza o conteúdo principal, incluindo o h1 */
+  transition: background-color var(--transition);
 }
 
-/* --- Rodapé --- */
+/* =================== */
+/* --- Footer --- */
+/* =================== */
 footer {
-    background-color: var(--secondary-color);
-    color: var(--text-light);
-    padding: 1.5rem 0;
-    text-align: center;
-    box-shadow: 0 -2px 5px var(--shadow-light);
-    margin-top: auto;
+  background-color: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
 }
 
-footer p {
-    margin-bottom: 0;
-    font-size: 0.9rem;
-}
-
-/* --- Estilos para Títulos e Textos --- */
-h1, h2, h3, h4, h5, h6 {
-    color: var(--secondary-color);
-    font-weight: 600;
-    margin-bottom: 1.5rem;
+/* =================== */
+/* --- Headings --- */
+/* =================== */
+h1, h2, h3, h4, h5 {
+  color: var(--color-text-primary);
+  margin-bottom: 1rem;
+  font-weight: 700;
+  text-align: center; /* Centraliza todos os headings por padrão */
 }
 
 p {
-    margin-bottom: 1rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 1rem;
 }
 
-/* --- Responsividade (Media Queries) --- */
-@media (max-width: 768px) {
-    header nav {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    header .nav-links {
-        margin-top: 15px;
-        flex-direction: column;
-        width: 100%;
-        gap: 10px;
-    }
-
-    header .nav-links a {
-        text-align: center;
-        width: 100%;
-    }
-
-    main.container {
-        padding: 1.5rem;
-        margin-top: 1rem;
-        margin-bottom: 1rem;
-    }
-}
-
-@media (max-width: 480px) {
-    header .logo {
-        font-size: 1.5rem;
-    }
-}
-
-/* --- Estilos para o formulário de login (login.html) --- */
+/* =================== */
+/* --- Login Card --- */
+/* =================== */
 .login-card {
-    background-color: var(--background-card);
-    padding: 2.5rem;
-    border-radius: 10px;
-    box-shadow: 0 8px 25px var(--shadow-medium); 
-    max-width: 450px;
-    width: 100%;
-    margin: 0 auto;
-    text-align: center;
+  background-color: var(--color-surface);
+  padding: 2rem;
+  border-radius: var(--radius);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  max-width: 400px;
+  margin: 3rem auto;
+  text-align: left; /* Mantém o texto dentro do card alinhado à esquerda */
+  transition: background-color var(--transition);
 }
 
 .login-card h2 {
-    color: var(--secondary-color);
-    font-size: 2rem;
-    margin-bottom: 0.8rem;
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  text-align: left; /* Sobrescreve para manter o h2 dentro do card à esquerda */
 }
 
 .login-card p {
-    color: var(--text-dark);
-    font-size: 1rem;
-    margin-bottom: 2rem;
+  font-size: 1rem;
+  margin-bottom: 2rem;
 }
 
-.login-form {
-    text-align: left;
-}
-
-.login-form p {
-    margin-bottom: 1.5rem;
-}
-
+/* =================== */
+/* --- Form Inputs --- */
+/* =================== */
 .login-form label {
-    display: block;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    color: var(--text-dark);
-    font-size: 0.95rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 0.3rem;
+  display: block;
 }
 
-.login-form input[type="text"],
-.login-form input[type="password"],
-.login-form input[type="email"] {
-    width: 100%;
-    padding: 0.8rem 1rem;
-    border: 1px solid var(--border-color);
-    border-radius: 5px;
-    font-size: 1rem;
-    color: var(--text-dark);
-    background-color: #fcfcfc;
-    transition: all 0.3s ease;
+.login-form input {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  background-color: var(--color-surface); /* Usa a cor de superfície */
+  color: var(--color-text-primary); /* Texto digitado com a cor primária */
+  transition: all var(--transition);
 }
 
-.login-form input[type="text"]:focus,
-.login-form input[type="password"]:focus,
-.login-form input[type="email"]:focus {
-    border-color: var(--primary-color); /* Agora usa o novo primary-color */
-    box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0.25); /* Adapta a sombra de foco à nova cor */
-    outline: none;
-    background-color: #ffffff;
+.login-form input:focus {
+  outline: none;
+  border-color: var(--color-primary);
 }
 
+.login-form input::placeholder {
+  color: var(--color-text-secondary); /* Placeholder com a cor secundária */
+  opacity: 0.8; /* Um pouco mais visível */
+}
+
+/* =================== */
+/* --- Primary Button --- */
+/* =================== */
 .btn-primary {
-    background-color: var(--primary-color);
-    border: none;
-    color: white;
-    padding: 0.9rem 1.5rem;
-    font-size: 1.1rem;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    width: 100%;
-    margin-top: 1.5rem;
+  background-color: var(--color-primary);
+  border: none;
+  color: white;
+  padding: 0.9rem 1.5rem;
+  font-size: 1rem;
+  border-radius: var(--radius);
+  cursor: pointer;
+  width: 100%;
+  transition: background-color var(--transition), transform 0.2s ease;
 }
 
 .btn-primary:hover {
-    background-color: #5A6268; /* Um tom mais escuro do primary-color no hover */
-    transform: translateY(-2px);
+  background-color: #303f9f;
+  transform: translateY(-2px);
 }
 
+/* =================== */
+/* --- Login Links --- */
+/* =================== */
 .login-links {
-    margin-top: 2.5rem;
-    font-size: 0.9rem;
-}
-
-.login-links p {
-    margin-bottom: 0.8rem;
+  text-align: center;
+  font-size: 0.9rem;
+  margin-top: 2rem;
 }
 
 .login-links a {
-    color: var(--accent-color);
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s ease;
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color var(--transition);
 }
 
 .login-links a:hover {
-    color: var(--secondary-color);
-    text-decoration: underline;
+  color: var(--color-accent);
+  text-decoration: underline;
 }
 
-/* Estilo para mensagens de alerta (se usadas) */
+/* =================== */
+/* --- Alert Boxes --- */
+/* =================== */
 .alert {
-    padding: 1rem;
-    border-radius: 5px;
-    margin-bottom: 1.5rem;
-    font-size: 0.9rem;
-    text-align: left;
+  padding: 1rem;
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
 }
 
 .alert-danger {
-    background-color: #F8D7DA; /* Mantido para erro, cor padrão de alerta vermelho */
-    color: #721C24;
-    border: 1px solid #F5C6CB;
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+body.dark-mode .alert-danger {
+  background-color: #5c1f23;
+  color: #f8d7da;
+  border-color: #932830;
+}
+
+/* =================== */
+/* --- Responsive --- */
+/* =================== */
+@media (max-width: 768px) {
+  .nav-links {
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+  }
+
+  .nav-links a,
+  #darkModeToggle {
+    width: 100%;
+    text-align: center;
+  }
+
+  main.container {
+    padding: 1.5rem;
+  }
 }

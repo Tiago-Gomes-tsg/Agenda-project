@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{% block title %}Minha Agenda{% endblock %}</title>
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
         
     {% block extra_css %}
     {% endblock %}
@@ -23,6 +24,9 @@
                         <a href="#">Login</a>
                         <a href="#">Registrar</a>
                     {% endif %}
+                    <button id="darkModeToggle" aria-label="Alternar modo noturno">
+                        <i class="fas fa-moon"></i>
+                    </button>
                 </div>
             </div>
         </nav>
@@ -41,5 +45,45 @@
 
     {% block extra_js %}
     {% endblock %}
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggleButton = document.getElementById('darkModeToggle');
+            const icon = toggleButton.querySelector('i');
+            const body = document.body;
+
+            // Verifica a preferência do usuário ou o último estado salvo
+            const currentTheme = localStorage.getItem('theme');
+            if (currentTheme) {
+                body.classList.add(currentTheme);
+                if (currentTheme === 'dark-mode') {
+                    icon.classList.remove('fa-moon');
+                    icon.classList.add('fa-sun');
+                } else {
+                    icon.classList.remove('fa-sun');
+                    icon.classList.add('fa-moon');
+                }
+            } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                // Se não há preferência salva, verifica a preferência do sistema operacional
+                body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark-mode');
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            }
+
+            toggleButton.addEventListener('click', () => {
+                body.classList.toggle('dark-mode');
+                if (body.classList.contains('dark-mode')) {
+                    localStorage.setItem('theme', 'dark-mode');
+                    icon.classList.remove('fa-moon');
+                    icon.classList.add('fa-sun');
+                } else {
+                    localStorage.setItem('theme', 'light-mode');
+                    icon.classList.remove('fa-sun');
+                    icon.classList.add('fa-moon');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
