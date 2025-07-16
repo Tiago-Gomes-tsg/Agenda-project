@@ -1,87 +1,105 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{% block title %}Minha Agenda{% endblock %}</title>
-        <link rel="stylesheet" href="{% static 'css/style.css' %}">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-        
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      {% block title %}
+        Minha Agenda
+      {% endblock %}
+    </title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  </head>
+  <body>
     <header>
-        <nav>
-            <div class="container">
-                <a class="logo" href="#">Minha Agenda</a>
-                <div class="nav-links">
-                    {% if user.is_authenticated %}
-                        <a href="#">Meus Contatos</a>
-                        <a href="#">Sair</a>
-                    {% else %}
-                        <a href="#">Login</a>
-                        <a href="#">Registrar</a>
-                    {% endif %}
-                    <a href="https://www.linkedin.com/in/tiagogomestsg/" target="_blank">Linked<i class="fab fa-linkedin-in"></i>- Tiago Gomes</a>
-                    <a href="https://github.com/Tiago-Gomes-tsg" target="_blank"><i class="fab fa-github"></i> GitHub - Tiago Gomes</a>
-                    <button id="darkModeToggle" aria-label="Alternar modo noturno">
-                        <i class="fas fa-moon"></i>
-                    </button>
-                </div>
-            </div>
-        </nav>
+      <nav>
+        <div class="container">
+          <a class="logo" href="#">Minha Agenda</a>
+          <div class="nav-links">
+            {% if user.is_authenticated %}
+              <a href="#">Meus Contatos</a>
+              <a href="#" id="logout-link">Sair</a>
+              <form id="logout-form" action="{% url 'logout' %}" method="post" style="display: none;">
+                {% csrf_token %}
+              </form>
+            {% else %}
+              <a href={% url "login" %}>Login</a>
+              <a href="#">Registrar</a>
+            {% endif %}
+            <a href="https://www.linkedin.com/in/tiagogomestsg/" target="_blank">Linked<i class="fab fa-linkedin-in"></i>- Tiago Gomes</a>
+            <a href="https://github.com/Tiago-Gomes-tsg" target="_blank"><i class="fab fa-github"></i> GitHub - Tiago Gomes</a>
+            <button id="darkModeToggle" aria-label="Alternar modo noturno"><i class="fas fa-moon"></i></button>
+          </div>
+        </div>
+      </nav>
     </header>
 
     <main class="container">
-        {% block content %}
-        {% endblock %}
+      {% block content %}
+
+      {% endblock %}
     </main>
 
     <footer>
-        <div class="container">
-            <p>&copy; 2025 Minha Agenda. Todos os direitos reservados.</p>
-        </div>
+      <div class="container">
+        <p>&copy; 2025 Minha Agenda. Todos os direitos reservados.</p>
+      </div>
     </footer>
 
     {% block extra_js %}
+
     {% endblock %}
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const toggleButton = document.getElementById('darkModeToggle');
-            const icon = toggleButton.querySelector('i');
-            const body = document.body;
-
-            const currentTheme = localStorage.getItem('theme');
-            if (currentTheme) {
-                body.classList.add(currentTheme);
-                if (currentTheme === 'dark-mode') {
-                    icon.classList.remove('fa-moon');
-                    icon.classList.add('fa-sun');
-                } else {
-                    icon.classList.remove('fa-sun');
-                    icon.classList.add('fa-moon');
-                }
-            } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                body.classList.add('dark-mode');
-                localStorage.setItem('theme', 'dark-mode');
-                icon.classList.remove('fa-moon');
-                icon.classList.add('fa-sun');
-            }
-
-            toggleButton.addEventListener('click', () => {
-                body.classList.toggle('dark-mode');
-                if (body.classList.contains('dark-mode')) {
-                    localStorage.setItem('theme', 'dark-mode');
-                    icon.classList.remove('fa-moon');
-                    icon.classList.add('fa-sun');
-                } else {
-                    localStorage.setItem('theme', 'light-mode');
-                    icon.classList.remove('fa-sun');
-                    icon.classList.add('fa-moon');
-                }
-            });
-        });
+      document.addEventListener('DOMContentLoaded', () => {
+        const toggleButton = document.getElementById('darkModeToggle')
+        const icon = toggleButton.querySelector('i')
+        const body = document.body
+      
+        const currentTheme = localStorage.getItem('theme')
+        if (currentTheme) {
+          body.classList.add(currentTheme)
+          if (currentTheme === 'dark-mode') {
+            icon.classList.remove('fa-moon')
+            icon.classList.add('fa-sun')
+          } else {
+            icon.classList.remove('fa-sun')
+            icon.classList.add('fa-moon')
+          }
+        } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          body.classList.add('dark-mode')
+          localStorage.setItem('theme', 'dark-mode')
+          icon.classList.remove('fa-moon')
+          icon.classList.add('fa-sun')
+        }
+      
+        toggleButton.addEventListener('click', () => {
+          body.classList.toggle('dark-mode')
+          if (body.classList.contains('dark-mode')) {
+            localStorage.setItem('theme', 'dark-mode')
+            icon.classList.remove('fa-moon')
+            icon.classList.add('fa-sun')
+          } else {
+            localStorage.setItem('theme', 'light-mode')
+            icon.classList.remove('fa-sun')
+            icon.classList.add('fa-moon')
+          }
+        })
+      })
+      
+      document.addEventListener('DOMContentLoaded', function () {
+        const logoutLink = document.getElementById('logout-link')
+        const logoutForm = document.getElementById('logout-form')
+      
+        if (logoutLink && logoutForm) {
+          logoutLink.addEventListener('click', function (e) {
+            e.preventDefault() // Impede o comportamento padrão do link (não vai para #)
+            logoutForm.submit() // Submete o formulário oculto
+          })
+        }
+      })
     </script>
-</body>
+  </body>
 </html>

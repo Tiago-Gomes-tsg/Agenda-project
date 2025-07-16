@@ -235,7 +235,6 @@ p {
   text-decoration: underline;
 }
 
-
 .alert {
   padding: 1rem;
   border-radius: var(--radius);
@@ -254,7 +253,72 @@ body.dark-mode .alert-danger {
   color: #f8d7da;
   border-color: #932830;
 }
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: 2rem;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
 
+.contact-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+  background-color: var(--color-surface);
+  color: var(--color-text-primary);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.contact-table thead {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.contact-table th,
+.contact-table td {
+  padding: 1rem 1.2rem;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.contact-table th {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.contact-table tbody tr:nth-child(even) {
+  background-color: rgba(var(--color-primary-rgb), 0.05);
+}
+
+.contact-table tbody tr:hover {
+  background-color: var(--color-accent);
+  color: white;
+  cursor: pointer;
+  transition: background-color var(--transition), color var(--transition);
+}
+
+body.dark-mode .contact-table thead {
+  background-color: var(--color-accent);
+}
+
+body.dark-mode .contact-table tbody tr:nth-child(even) {
+  background-color: rgba(var(--color-text-primary-rgb), 0.05);
+}
+
+body.dark-mode .contact-table tbody tr:hover {
+  background-color: var(--color-primary);
+  color: var(--color-text-primary);
+}
+
+@media (max-width: 768px) {
+  .contact-table th,
+  .contact-table td {
+    padding: 0.8rem 1rem;
+    font-size: 0.9rem;
+  }
+}
 
 @media (max-width: 768px) {
   .nav-links {

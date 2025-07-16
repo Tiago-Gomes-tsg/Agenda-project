@@ -1,9 +1,47 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Página Inicial{% endblock %}
-
+{% block title %}
+  Página Inicial
+{% endblock %}
 
 {% block content %}
+  {% if user.is_authenticated %}
+    <h1>Contatos</h1>
 
-{% endblock content %}
+    <div class="table-responsive">
+      <table class="contact-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Sobrenome</th>
+            <th>Email</th>
+            <th>Número</th>
+            <th>Categoria</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>João</td>
+            <td>Silva</td>
+            <td>joao@example.com</td>
+            <td>(11) 98765-4321</td>
+            <td>Amigos</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Maria</td>
+            <td>Souza</td>
+            <td>maria@example.com</td>
+            <td>(21) 91234-5678</td>
+            <td>Trabalho</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <h1>Acesse sua conta para gerenciar seus contatos</h1>
+  {% endif %}
+{% endblock %}
