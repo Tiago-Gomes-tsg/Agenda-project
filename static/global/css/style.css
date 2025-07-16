@@ -76,15 +76,15 @@ header nav {
 
 .nav-links a[href*="linkedin.com"],
 .nav-links a[href*="github.com"] {
-  padding: 0.5rem; /* Ajusta o padding para ser mais quadrado para apenas o ícone */
-  display: flex; /* Garante que o ícone esteja centralizado verticalmente */
+  padding: 0.5rem;
+  display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .nav-links a[href*="linkedin.com"] i,
 .nav-links a[href*="github.com"] i {
-  margin-right: 0.5rem; /* Remove o margin-right para ícones que estão sozinhos */
+  margin-right: 0.5rem;
 }
 
 .nav-links a {
