@@ -22,23 +22,29 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>João</td>
-            <td>Silva</td>
-            <td>joao@example.com</td>
-            <td>(11) 98765-4321</td>
-            <td>Amigos</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Maria</td>
-            <td>Souza</td>
-            <td>maria@example.com</td>
-            <td>(21) 91234-5678</td>
-            <td>Trabalho</td>
-          </tr>
-        </tbody>
+          {% for contact in contacts%}
+          <tr class="clickable-row" data-href="{% url "contacts:contact" contact.id %}">
+            <td>
+              {{contact.id}}
+              </td>
+              <td>
+                {{contact.first_name}}
+              </td>
+              <td>
+                {{contact.last_name}}
+              </td>
+              <td>
+                {{contact.email}}
+              </td>
+              <td>
+                {{contact.number}}
+              </td>
+              <td>
+                {{contact.category.name}}
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
       </table>
     </div>
   {% else %}

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block tittle %}
+  Detalhes do Contato
+{% endblock %}
+
+{% block content %}
+  {% if user.is_authenticated %}
+    <main class="container">
+      <div class="contact-detail-card">
+        <h1>{{contact.first_name}} {{contact.last_name}}</h1>
+        <p><strong>ID:</strong> {{contact.id}}</p>
+        <p><strong>E-mail:</strong> {{contact.email}}</p>
+        <p><strong>Número:</strong> {{contact.number}}</p>
+        <p><strong>Categoria:</strong> {{contact.category.name}}</p>
+        <div class="contact-actions">
+          <a href="#" class="btn-primary edit-btn">Editar Contato</a>
+          <a href="#" class="btn-primary delete-btn">Excluir Contato</a>
+        </div>
+      </div>
+    </main>
+  {% else %}
+    <main class="container">
+      <div class="login-card">
+        <h2>Acesso Negado</h2>
+        <p>Por favor, faça login para visualizar os detalhes do contato.</p>
+        <div class="login-links">
+          <a href="/login">Fazer Login</a>
+        </div>
+      </div>
+    </main>
+  {% endif %}
+{% endblock %}

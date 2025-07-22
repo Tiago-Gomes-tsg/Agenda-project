@@ -16,10 +16,10 @@
     <header>
       <nav>
         <div class="container">
-          <a class="logo" href="#">Minha Agenda</a>
+          <a class="logo" href="{% url "contacts:index" %}">Minha Agenda</a>
           <div class="nav-links">
             {% if user.is_authenticated %}
-              <a href="#">Meus Contatos</a>
+              <a href="{% url "contacts:index" %}">Meus Contatos</a>
               <a href="#" id="logout-link">Sair</a>
               <form id="logout-form" action="{% url 'logout' %}" method="post" style="display: none;">
                 {% csrf_token %}
@@ -100,6 +100,20 @@
           })
         }
       })
+
+        document.addEventListener('DOMContentLoaded', function() {
+    const clickableRows = document.querySelectorAll('.clickable-row');
+
+    clickableRows.forEach(row => {
+      row.addEventListener('click', function() {
+        const url = this.dataset.href;
+        if (url) {
+          window.location.href = url;
+        }
+      });
+      row.style.cursor = 'pointer';
+    });
+  });
     </script>
   </body>
 </html>
