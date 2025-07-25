@@ -2,13 +2,18 @@
 {% load static %}
 
 {% block title %}
-  Página Inicial
+  Meus Contatos
 {% endblock %}
 
 {% block content %}
   {% if user.is_authenticated %}
     <h1>Contatos</h1>
-
+    <div class="search">
+      <form action="{% url "contacts:search" %}" method="get" class="search-form">
+        <input type="text" class="search-input" placeholder="Buscar..."  id="search" name="q"/>
+        <button type="submit" class="search-button"><i class="fas fa-search"></i></button>
+      </form>
+    </div>
     <div class="table-responsive">
       <table class="contact-table">
         <thead>
@@ -22,32 +27,23 @@
           </tr>
         </thead>
         <tbody>
-          {% for contact in contacts%}
-          <tr class="clickable-row" data-href="{% url "contacts:contact" contact.id %}">
-            <td>
-              {{contact.id}}
-              </td>
-              <td>
-                {{contact.first_name}}
-              </td>
-              <td>
-                {{contact.last_name}}
-              </td>
-              <td>
-                {{contact.email}}
-              </td>
-              <td>
-                {{contact.number}}
-              </td>
-              <td>
-                {{contact.category.name}}
-              </td>
+          {% for contact in contacts %}
+            <tr class="clickable-row" data-href="{% url 'contacts:contact' contact.id %}">
+              <td>{{ contact.id }}</td>
+              <td>{{ contact.first_name }}</td>
+              <td>{{ contact.last_name }}</td>
+              <td>{{ contact.email }}</td>
+              <td>{{ contact.number }}</td>
+              <td>{{ contact.category.name }}</td>
             </tr>
-            {% endfor %}
-          </tbody>
+          {% endfor %}
+        </tbody>
       </table>
     </div>
   {% else %}
-    <h1>Acesse sua conta para gerenciar seus contatos</h1>
+    <h1>Faça o login para continuar</h1>
+    <script>
+      window.location.href = "{% url 'login' %}"
+    </script>
   {% endif %}
 {% endblock %}

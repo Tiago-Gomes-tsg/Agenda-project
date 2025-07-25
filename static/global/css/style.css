@@ -312,31 +312,6 @@ body.dark-mode .contact-table tbody tr:hover {
   color: var(--color-text-primary);
 }
 
-@media (max-width: 768px) {
-  .contact-table th,
-  .contact-table td {
-    padding: 0.8rem 1rem;
-    font-size: 0.9rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .nav-links {
-    flex-direction: column;
-    gap: 0.5rem;
-    width: 100%;
-  }
-
-  .nav-links a,
-  #darkModeToggle {
-    width: 100%;
-    text-align: center;
-  }
-
-  main.container {
-    padding: 1.5rem;
-  }
-}
 
 .contact-detail-card {
   background-color: var(--color-surface);
@@ -444,6 +419,133 @@ body.dark-mode .contact-detail-card p strong {
   color: var(--color-text-primary);
 }
 
+.search {
+  margin-top: 2rem;
+  margin-bottom: 2rem; /* Adicionado um pouco de margem abaixo para espaçamento */
+  display: flex; /* Para centralizar o formulário */
+  justify-content: center; /* Para centralizar o formulário */
+}
+
+.search-form {
+  display: flex;
+  width: 100%;
+  max-width: 500px; /* Limita a largura máxima do campo de busca */
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  overflow: hidden; /* Garante que as bordas arredondadas sejam aplicadas corretamente */
+  background-color: var(--color-surface);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: box-shadow var(--transition), border-color var(--transition);
+}
+
+.search-form:focus-within {
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.search-input {
+  flex-grow: 1; /* Faz com que o input ocupe o máximo de espaço possível */
+  padding: 0.9rem 1.2rem;
+  border: none; /* Remove a borda padrão do input */
+  font-size: 1rem;
+  color: var(--color-text-primary);
+  background-color: transparent; /* Permite que o background do .search-form apareça */
+  transition: color var(--transition);
+}
+
+.search-input:focus {
+  outline: none; /* Remove o outline ao focar */
+}
+
+.search-input::placeholder {
+  color: var(--color-text-secondary);
+  opacity: 0.8;
+}
+
+.search-button {
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  padding: 0.9rem 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  transition: background-color var(--transition), transform 0.2s ease;
+}
+
+.search-button:hover {
+  background-color: var(--color-accent);
+  transform: scale(1.02);
+}
+
+.search-button i {
+  /* Estilos para o ícone, se estiver usando Font Awesome */
+  margin: 0;
+}
+
+/* Estilos para Dark Mode */
+body.dark-mode .search-form {
+  border-color: var(--color-border);
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode .search-form:focus-within {
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .search-button {
+  background-color: var(--color-accent);
+}
+
+body.dark-mode .search-button:hover {
+  background-color: var(--color-primary);
+}
+
+@media (max-width: 768px) {
+  .contact-table th,
+  .contact-table td {
+    padding: 0.8rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+  }
+
+  .nav-links a,
+  #darkModeToggle {
+    width: 100%;
+    text-align: center;
+  }
+
+  main.container {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .search-form {
+    max-width: 100%;
+    margin: 0 1rem;
+  }
+
+  .search-input {
+    padding: 0.7rem 1rem;
+    font-size: 0.95rem;
+  }
+
+  .search-button {
+    padding: 0.7rem 1rem;
+    font-size: 1rem;
+  }
+}
 
 @media (max-width: 768px) {
   .contact-detail-card {
