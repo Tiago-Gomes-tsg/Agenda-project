@@ -36,7 +36,7 @@ def search(request):
             if search_value == '':
                 return redirect('contacts:index')
             contacts = Contact.objects.filter(user=request.user)\
-                .filter(Q(first_name__icontains=search_value), Q(last_name__icontains=search_value), Q())\
+                .filter(Q(first_name__icontains=search_value) | Q(last_name__icontains=search_value) | Q(email__icontains=search_value)| Q(number__icontains=search_value))\
                 .order_by('-id')[:20]
             context = {
                 'contacts': contacts,
