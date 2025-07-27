@@ -9,37 +9,45 @@
   {% if user.is_authenticated %}
     <h1>Contatos</h1>
     <div class="search">
-      <form action="{% url "contacts:search" %}" method="get" class="search-form">
-        <input type="text" class="search-input" placeholder="Buscar..."  id="search" name="q"/>
+      <form action="{% url 'contacts:search' %}" method="get" class="search-form">
+        <input type="text" class="search-input" placeholder="Buscar..." id="search" name="q" value="{{ request.GET.q.strip }}" />
         <button type="submit" class="search-button"><i class="fas fa-search"></i></button>
       </form>
     </div>
-    <div class="table-responsive">
-      <table class="contact-table">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Sobrenome</th>
-            <th>Email</th>
-            <th>Número</th>
-            <th>Categoria</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for contact in contacts %}
-            <tr class="clickable-row" data-href="{% url 'contacts:contact' contact.id %}">
-              <td>{{ contact.id }}</td>
-              <td>{{ contact.first_name }}</td>
-              <td>{{ contact.last_name }}</td>
-              <td>{{ contact.email }}</td>
-              <td>{{ contact.number }}</td>
-              <td>{{ contact.category.name }}</td>
+    {% if page_obj %}
+      <div class="table-responsive">
+        <table class="contact-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nome</th>
+              <th>Sobrenome</th>
+              <th>Email</th>
+              <th>Número</th>
+              <th>Categoria</th>
             </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
+          </thead>
+          <tbody>
+            {% for contact in page_obj %}
+              <tr class="clickable-row" data-href="{% url 'contacts:contact' contact.id %}">
+                <td>{{ contact.id }}</td>
+                <td>{{ contact.first_name }}</td>
+                <td>{{ contact.last_name }}</td>
+                <td>{{ contact.email }}</td>
+                <td>{{ contact.number }}</td>
+                <td>{{ contact.category.name }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {% else %}
+      <main>
+        <div class="contact-detail-card">
+          <h1>Nenhum contato foi encontrado</h1>
+        </div>
+      </main>
+    {% endif %}
   {% else %}
     <h1>Faça o login para continuar</h1>
     <script>

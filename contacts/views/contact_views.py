@@ -1,17 +1,20 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.db.models import Q
 from contacts.models import Contact
-
+from django.core.paginator import Paginator
 
 def index(request):
     if request.user.is_authenticated:
-        contacts = Contact.objects.filter(user=request.user).order_by('-id')[:20]
+        contacts = Contact.objects.filter(user=request.user).order_by('-id')
+        paginator = Paginator(contacts,1)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
         context = {
-            'contacts': contacts,
+            'page_obj': page_obj,
         }
     else:
         context= {
-            'contacts': [],
+            'page_obj': [],
         }
     
     return render(request, 'contacts/index.html', context)
@@ -37,13 +40,16 @@ def search(request):
                 return redirect('contacts:index')
             contacts = Contact.objects.filter(user=request.user)\
                 .filter(Q(first_name__icontains=search_value) | Q(last_name__icontains=search_value) | Q(email__icontains=search_value)| Q(number__icontains=search_value))\
-                .order_by('-id')[:20]
+                .order_by('-id')
+            paginator = Paginator(contacts,1)
+            page_number = request.GET.get('page')
+            page_obj = paginator.get_page(page_number)
             context = {
-                'contacts': contacts,
+                'page_obj': page_obj,
             }
         else:
             context= {
-                'contacts': [],
+                'page_obj': [],
             }
         return render(request, 'contacts/index.html', context)
     else:

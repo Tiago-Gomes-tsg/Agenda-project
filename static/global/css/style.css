@@ -421,18 +421,18 @@ body.dark-mode .contact-detail-card p strong {
 
 .search {
   margin-top: 2rem;
-  margin-bottom: 2rem; /* Adicionado um pouco de margem abaixo para espaçamento */
-  display: flex; /* Para centralizar o formulário */
-  justify-content: center; /* Para centralizar o formulário */
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
 }
 
 .search-form {
   display: flex;
   width: 100%;
-  max-width: 500px; /* Limita a largura máxima do campo de busca */
+  max-width: 500px;
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
-  overflow: hidden; /* Garante que as bordas arredondadas sejam aplicadas corretamente */
+  overflow: hidden;
   background-color: var(--color-surface);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
   transition: box-shadow var(--transition), border-color var(--transition);
@@ -444,17 +444,17 @@ body.dark-mode .contact-detail-card p strong {
 }
 
 .search-input {
-  flex-grow: 1; /* Faz com que o input ocupe o máximo de espaço possível */
+  flex-grow: 1;
   padding: 0.9rem 1.2rem;
-  border: none; /* Remove a borda padrão do input */
+  border: none;
   font-size: 1rem;
   color: var(--color-text-primary);
-  background-color: transparent; /* Permite que o background do .search-form apareça */
+  background-color: transparent;
   transition: color var(--transition);
 }
 
 .search-input:focus {
-  outline: none; /* Remove o outline ao focar */
+  outline: none;
 }
 
 .search-input::placeholder {
@@ -481,11 +481,9 @@ body.dark-mode .contact-detail-card p strong {
 }
 
 .search-button i {
-  /* Estilos para o ícone, se estiver usando Font Awesome */
   margin: 0;
 }
 
-/* Estilos para Dark Mode */
 body.dark-mode .search-form {
   border-color: var(--color-border);
   box-shadow: 0 4px 10px rgba(255, 255, 255, 0.05);
@@ -503,6 +501,93 @@ body.dark-mode .search-button {
 body.dark-mode .search-button:hover {
   background-color: var(--color-primary);
 }
+
+.pagination-container {
+  margin-top: 2.5rem;
+  margin-bottom: 2rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.pagination .step-links {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0;
+  margin: 0;
+}
+
+.pagination .step-links li {
+  margin: 0;
+}
+
+.pagination .step-links a,
+.pagination .step-links span {
+  display: inline-block;
+  padding: 0.6rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  text-decoration: none;
+  color: var(--color-text-secondary);
+  background-color: var(--color-surface);
+  transition: all var(--transition);
+  font-weight: 500;
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+
+.pagination .step-links a:hover {
+  background-color: var(--color-primary);
+  color: #ffffff;
+  border-color: var(--color-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.pagination .step-links .current span {
+  background-color: var(--color-primary);
+  color: #ffffff;
+  border-color: var(--color-primary);
+  font-weight: 700;
+  cursor: default;
+}
+
+.pagination .step-links .disabled span {
+  color: var(--color-text-secondary);
+  background-color: var(--color-bg);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+body.dark-mode .pagination .step-links a:hover {
+   box-shadow: 0 4px 10px rgba(255, 255, 255, 0.08);
+}
+
+body.dark-mode .pagination .step-links .current span {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+body.dark-mode .pagination .step-links .disabled span {
+  background-color: var(--color-surface);
+  opacity: 0.5;
+}
+
+@media (max-width: 480px) {
+  .pagination .step-links {
+    gap: 0.4rem;
+  }
+  .pagination .step-links a,
+  .pagination .step-links span {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.9rem;
+  }
+}
+
 
 @media (max-width: 768px) {
   .contact-table th,

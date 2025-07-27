@@ -6,7 +6,7 @@
 
 {% block content %}
   {% if user.is_authenticated %}
-    <main class="container">
+    <main>
       <div class="contact-detail-card">
         <h1>{{ contact.first_name }} {{ contact.last_name }}</h1>
         <p>
@@ -28,7 +28,7 @@
       </div>
     </main>
   {% else %}
-    <main class="container">
+    <main>
       <div class="login-card">
         <h2>Acesso Negado</h2>
         <p>Por favor, faça login para visualizar os detalhes do contato.</p>

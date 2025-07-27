@@ -1,0 +1,51 @@
+{% if page_obj and page_obj.paginator.num_pages > 1 %}
+  <div class="pagination-container">
+    <nav class="pagination" aria-label="Navegação de página">
+      <ul class="step-links">
+        {% if page_obj.has_previous %}
+          <li>
+            <a href="?page=1&q={{request.GET.q.strip}}" title="Ir para a primeira página">&laquo; primeira</a>
+          </li>
+        {% else %}
+          <li class="disabled" aria-disabled="true">
+            <span>&laquo; primeira</span>
+          </li>
+        {% endif %}
+
+        {% if page_obj.has_previous %}
+          <li>
+            <a href="?page={{ page_obj.previous_page_number }}&q={{request.GET.q.strip}}" title="Ir para a página anterior">anterior</a>
+          </li>
+        {% else %}
+          <li class="disabled" aria-disabled="true">
+            <span>anterior</span>
+          </li>
+        {% endif %}
+
+        <li class="current">
+          <span>Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</span>
+        </li>
+
+        {% if page_obj.has_next %}
+          <li>
+            <a href="?page={{ page_obj.next_page_number }}&q={{request.GET.q.strip}}" title="Ir para a próxima página">próxima</a>
+          </li>
+        {% else %}
+          <li class="disabled" aria-disabled="true">
+            <span>próxima</span>
+          </li>
+        {% endif %}
+
+        {% if page_obj.has_next %}
+          <li>
+            <a href="?page={{ page_obj.paginator.num_pages }}&q={{request.GET.q.strip}}" title="Ir para a última página">última &raquo;</a>
+          </li>
+        {% else %}
+          <li class="disabled" aria-disabled="true">
+            <span>última &raquo;</span>
+          </li>
+        {% endif %}
+      </ul>
+    </nav>
+  </div>
+{% endif %}
