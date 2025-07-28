@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% comment %} {% extends 'base.html' %}
 
 {% block title %}Logout - Minha Agenda{% endblock %}
 
@@ -7,4 +7,4 @@
         <h2>Você saiu</h2>
         <p>Obrigado por usar a Minha Agenda. <a href="{% url 'login' %}">Clique aqui</a> para entrar novamente.</p>
     </div>
-{% endblock %}
+{% endblock %} {% endcomment %}

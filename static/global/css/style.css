@@ -577,6 +577,41 @@ body.dark-mode .pagination .step-links .disabled span {
   opacity: 0.5;
 }
 
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.login-form input,
+.login-form textarea,
+.login-form select {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  font-size: 1rem;
+  background-color: var(--color-surface);
+  color: var(--color-text-primary);
+  transition: all var(--transition);
+  font-family: inherit;
+}
+
+.login-form input:focus,
+.login-form textarea:focus,
+.login-form select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+.login-form input::placeholder,
+.login-form textarea::placeholder {
+  color: var(--color-text-secondary);
+  opacity: 0.8;
+}
+
+.form-group:last-of-type {
+    margin-bottom: 2rem;
+}
+
 @media (max-width: 480px) {
   .pagination .step-links {
     gap: 0.4rem;

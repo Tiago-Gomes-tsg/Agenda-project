@@ -17,8 +17,9 @@ class Contact(models.Model):
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30, blank=True, null=True)
-    email = models.EmailField(unique=True)
+    email = models.EmailField()
     number = models.CharField(max_length=20)
+    created_date = models.DateTimeField(auto_now_add=True)
     
     class Meta:
         ordering = ['first_name', 'last_name',]
