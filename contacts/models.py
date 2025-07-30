@@ -19,11 +19,11 @@ class Contact(models.Model):
     last_name = models.CharField(max_length=30, blank=True, null=True)
     email = models.EmailField()
     number = models.CharField(max_length=20)
+    description = models.TextField(max_length=500, null=True, blank=True)
     created_date = models.DateTimeField(auto_now_add=True)
     
     class Meta:
         ordering = ['first_name', 'last_name',]
-        unique_together = ('user', 'email',)
     
     def __str__(self):
         return f"{self.first_name} {self.last_name if self.last_name else ''} ({self.user.username})"

@@ -68,6 +68,8 @@ def create(request):
                 contact = form.save(commit=False)
                 contact.user=request.user
                 contact.save()
+                return redirect('contacts:create')
+            
             return render(request, 'contacts/create.html', context)
     
     context = {

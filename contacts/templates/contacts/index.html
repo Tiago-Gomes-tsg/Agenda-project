@@ -8,11 +8,16 @@
 {% block content %}
   {% if user.is_authenticated %}
     <h1>Contatos</h1>
-    <div class="search">
+    <div class="page-actions">
       <form action="{% url 'contacts:search' %}" method="get" class="search-form">
-        <input type="text" class="search-input" placeholder="Buscar..." id="search" name="q" value="{{ request.GET.q.strip }}" />
+        <input type="text" class="search-input" placeholder="Buscar por nome ou sobrenome..." id="search" name="q" value="{{ request.GET.q.strip }}" />
         <button type="submit" class="search-button"><i class="fas fa-search"></i></button>
       </form>
+
+      <a href="{% url 'contacts:create' %}" class="btn-create">
+        <i class="fas fa-plus"></i>
+        <span>Criar Contato</span>
+      </a>
     </div>
     {% if page_obj %}
       <div class="table-responsive">
