@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator
 from contacts.models import Contact
+from django.urls import reverse
 from django.db.models import Q
 from contacts.forms import *
 
@@ -61,19 +62,49 @@ def create(request):
     if request.method == 'POST':
         if request.user.is_authenticated:
             form = ContactForm(request.POST)
+            form_action = reverse('contacts:create')
             context = {
-                'form': form
+                'form': form,
+                'form_action': form_action,
+                'button_name': 'Criar',
             }
             if form.is_valid():
                 contact = form.save(commit=False)
                 contact.user=request.user
                 contact.save()
-                return redirect('contacts:create')
+                return redirect('contacts:contact', contact_id=contact.pk)
             
             return render(request, 'contacts/create.html', context)
     
     context = {
-            'form': ContactForm()
+            'form': ContactForm(),
+            'form_action': reverse('contacts:create'),
+            'button_name': 'Criar',
         }
     return render(request, 'contacts/create.html', context)
     
+def update(request, contact_id):
+    contact = get_object_or_404(Contact,pk=contact_id, user=request.user)
+    if request.method == 'POST':
+        if request.user.is_authenticated:
+            form = ContactForm(request.POST, instance=contact)
+            form_action = reverse('contacts:update', args=[contact.pk,])
+            context = {
+                'form': form,
+                'form_action': form_action,
+                'button_name': 'Atualizar',
+            }
+            if form.is_valid():
+                contact = form.save(commit=False)
+                contact.user=request.user
+                contact.save()
+                return redirect('contacts:contact', contact_id= contact.pk)
+            
+            return render(request, 'contacts/create.html', context)
+    
+    context = {
+            'form': ContactForm(instance=contact),
+            'form_action': reverse('contacts:update', args=[contact.pk]),
+            'button_name': 'Atualizar',
+        }
+    return render(request, 'contacts/create.html', context)

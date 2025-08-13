@@ -25,7 +25,7 @@
           <strong>Descrição:</strong> {{ contact.description }}
         </p>
         <div class="contact-actions">
-          <a href="#" class="btn-primary edit-btn">Editar Contato</a>
+          <a href="{% url "contacts:update" contact.id %}" class="btn-primary edit-btn">Editar Contato</a>
           <a href="#" class="btn-primary delete-btn">Excluir Contato</a>
         </div>
       </div>

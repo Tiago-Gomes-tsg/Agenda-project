@@ -4,7 +4,7 @@
     <div class="login-card">
       <h2>Criar Contato</h2>
 
-      <form action="{% url 'contacts:create' %}" method="POST" class="login-form">
+      <form action="{{ form_action }}" method="POST" class="login-form">
         {% csrf_token %}
 
         {% for field in form %}
@@ -16,7 +16,7 @@
           </div>
         {% endfor %}
 
-        <button type="submit" class="btn-primary">Criar</button>
+        <button type="submit" class="btn-primary"> {{button_name}} </button>
       </form>
     </div>
   {% endif %}
