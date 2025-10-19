@@ -108,3 +108,17 @@ def update(request, contact_id):
             'button_name': 'Atualizar',
         }
     return render(request, 'contacts/create.html', context)
+
+
+def delete(request, contact_id):
+    contact = get_object_or_404(Contact,pk=contact_id, user=request.user)
+    if request.method == 'POST':
+        if request.user.is_authenticated:
+            confirm = request.POST.get('confirm', 'false')
+            if confirm == 'true':
+                contact.delete()
+                return redirect('contacts:index')
+            return render(request, 'contacts/contact.html', {
+                'contact': contact,
+                'confirm': confirm
+            })

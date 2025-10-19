@@ -9,7 +9,12 @@ urlpatterns = [
     path('', contact_views.index, name='index'),
     
     #CRUD
-    path('contact/<int:contact_id>/detail/', contact_views.contact, name='contact'),
     path('contact/create/', contact_views.create, name='create'),
+    path('contact/<int:contact_id>/detail/', contact_views.contact, name='contact'),
     path('contact/<int:contact_id>/update/', contact_views.update, name='update'),
+    path('contact/<int:contact_id>/delete/', contact_views.delete, name='delete'),
+    
+    #USER
+    path('user/create/', user_forms.register, name='register'),
+    path('user/update/', user_forms.register_update, name='register_update')
 ]

@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 
 
 class Category(models.Model):
+    # user = models.ForeignKey(User, on_delete=models.CASCADE)  <------ tornar relativo com usuário assim que terminar a edição de usuário
     name = models.CharField(max_length=50, unique=True)
     
     class Meta:

@@ -25,8 +25,16 @@
           <strong>Descrição:</strong> {{ contact.description }}
         </p>
         <div class="contact-actions">
-          <a href="{% url "contacts:update" contact.id %}" class="btn-primary edit-btn">Editar Contato</a>
-          <a href="#" class="btn-primary delete-btn">Excluir Contato</a>
+            <a href="{% url "contacts:update" contact.id %}" class="btn-primary edit-btn">Editar Contato</a>          
+          <form action="{% url 'contacts:delete' contact.id %}" method="post">
+              {% csrf_token %}
+              {% if confirm == 'false' %}
+              <input type="hidden" name="confirm" value="true">
+              <button type="submit" class="btn-primary delete-btn">Confirmar</button>
+              {% else %}
+              <button type="submit" class="btn-primary delete-btn">Excluir Contato</button>
+              {% endif %}
+          </form>
         </div>
       </div>
     </main>

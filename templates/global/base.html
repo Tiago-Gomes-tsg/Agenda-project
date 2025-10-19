@@ -26,11 +26,14 @@
               </form>
             {% else %}
               <a href={% url "login" %}>Login</a>
-              <a href="#">Registrar</a>
+              <a href={% url "contacts:register" %}>Registrar</a>
             {% endif %}
             <a href="https://www.linkedin.com/in/tiagogomestsg/" target="_blank">Linked<i class="fab fa-linkedin-in"></i>- Tiago Gomes</a>
             <a href="https://github.com/Tiago-Gomes-tsg" target="_blank"><i class="fab fa-github"></i> GitHub - Tiago Gomes</a>
             <button id="darkModeToggle" aria-label="Alternar modo noturno"><i class="fas fa-moon"></i></button>
+            {% if user.is_authenticated %}
+            <span class="user-greeting">Olá, {{user.first_name}}!</span>
+            {% endif %}
           </div>
         </div>
       </nav>
